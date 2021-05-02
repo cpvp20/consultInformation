@@ -1,0 +1,30 @@
+const aws = require('aws-sdk');
+const dynamoDB = new aws.DynamoDB({
+    region: 'us-east-1',
+    apiVersion: '2012-08-10'
+});
+exports.handler = (event, context, callback) => {
+    const eventTopic = event.topic;
+    var params = {
+        "TableName": "questions",
+        "IndexName": "Topic",
+        "KeyConditionExpression": "Topic = :v_topic",
+        "ExpressionAttributeValues": {
+            ":v_topic": { "S": eventTopic }
+        },
+        "ScanIndexForward": false
+    };
+
+    dynamoDB.query(params, function (err, data) {
+        if (err) {
+            console.log("errooooooooooor");
+            console.log(err);
+            callback(err);
+        } else {
+            console.log("Query succeeded.");
+            console.log(data); 
+            const items = data.Items.map((item) =>{ return({ question: item.Question.S, answer: item.Answer.S}); });
+            callback(null, items);
+        }
+    });
+};
