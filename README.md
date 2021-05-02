@@ -1,13 +1,19 @@
-# informationCatalog
+# ConsultInformation
+
 
 ## Micro Service Description
-This service is responsible for fetching and providing all the relevant and up to date information about Covid-19.
+Shows general information about COVID updates, how to best take care of someone infected and recommendations. 
+
 ## Functional Requirements
-* The information includes various sections: The most common symptoms of COVID-19 are, What to Do If You're Sick, How to Get a Test for Current Infection, Important Ways to Slow The Spread, How to Know If You are at Risk of Getting Very Sick.
-* The information comes from various sources, including the CDC.
-* The information is updated every week, so that it has always has the most recent findings.
+- User can consult information about best practices
+- Common Q&As are added to each topic
+- Routes include /questions (which gets all Q&As) and questions/{topic} (which gets them b topic) where topic can be basics, spread, prevention, symptoms, testing.
 
-## Non-Functional Requirements
-* The information is presented in an organized manner.
+## Non Functional Requirements
+- Information is stored and displayed accordingly to the different sections and topics
+- External links for further consultation is displayed
 
-## Deployment URL
+## Deployment URL 
+https://nn7mj0fdmb.execute-api.us-east-1.amazonaws.com/dev/questions/
+
+
